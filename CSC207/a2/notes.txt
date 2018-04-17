@@ -1,0 +1,356 @@
+#########
+# Step 1
+
+Code affected: none
+
+Created this file.
+
+#########
+# Step 2
+
+Code affected: all .java files
+
+Reformatted using the Google Java style formatter.
+
+I actually reformatted the code even before the Step1, because I was too excited after I downloaded the plugin, and I
+didn't realize that I should reformat the code in Step2. However, please don't reduce my mark for that wrong move.
+
+#########
+# Step 3
+
+Code affected: Pig.turnAround
+
+Flaw: unnecessary if, leading to duplicate code.
+
+Fix: replaced if statement with a single assignment statement.
+
+#########
+# Step 4
+
+File affected: Wind.java
+
+Code affected: Wind.lastLeft ; Wind.windBlowingLeft
+
+Flaw: the doc comments are unclear, the return description inside doc comments is missing.
+
+Fix: renamed the attribute lastLeft to lastRight; renamed the method windBlowingLeft to windBlowingRight, and replaced
+all the lastLeft to lastRight in the this method. Wrote the return description for the two methods in file.
+
+I also rewrote the comments (description of the method) for windBlowingRight and windBlowingUp. The original comments
+were confusing and inconsistent with the utility of methods; the language and grammar was not clear either. Thus I
+rewrote the comments to make them make more sense.
+
+#########
+# Step 5
+
+File affected: Wind.java
+
+Code affected: Wind.windBlowingRight (was previously named Wind.windBlowingLeft). And the doc document for the two
+methods in Wind.java
+
+Flaw: the Wind.windBlowingRight method's name and the doc document return description was wrong. leading to confusion;
+the Wind.windBlowingUp method's doc document return description was not accurate enough.
+
+Fix: Rewrite the return description sentence for both method, and renamed the Wind.windBlowingLeft method to
+Wind.windBlowingRight.
+
+#########
+# Step 6
+
+File affected: Wind.java
+
+Code affected: Wind.windBlowingRight, Wind.windBlowingUp
+
+New method added: Wind.windRule
+
+Flaw: Duplicate codes in methods Wind.windBlowingRight and Wind.windBlowingUp
+
+Fix: Create a new method named Wind.windRule to implement the behavior of the wind, I added doc document for the new
+method which describes the behavior of wind's movement as well. And I let the methods Wind.windBlowingRight and
+Wind.windBlowingUp to call Wind.windRule as supportive methods to figure out their new direction.
+
+#########
+# Step 7
+
+File affected: Main.java, Pig.Java
+
+Flaw: Since I renamed the method Wind.windBlowingLeft to Wind.windBlowingRight, I have to change that in the Main.java
+file as well. Main.java was still calling the previous method Wind.windBlowingLeft in Main.start method, KeyFrame,
+lolfood.
+
+Fix: Change the call of method Wind.windBlowingLeft to Wind.windBlowingRight.
+
+########
+# Step 8
+
+File created: FarmObject.java
+
+Purpose of creating file: There are so many duplicating codes in Chicken.java, Egg.java, Pig.java, Human.java,
+AnimalFood.java and ANIMAL_MANURE.java. Therefore I created FarmObject.java which will be the superclass of those files
+and eliminates duplicated codes.
+
+Description of created file: The FarmObject.java is an abstract class. As its name, this class will be the superclass
+of all the objects including living things and non-living things in the farm. It has attributes: appearance, x, y and
+color; it has constructor FarmObject and method setLocation.
+
+########
+# Step 9
+
+File created: Species.java, NonLiving.java
+
+Purpose of creating files: eliminate duplicated codes.
+
+Description of created file: Both class are abstract and extends FarmObject class. The Species.java will be the
+superclass of Human, Pig and Chicken; and The NonLiving.java will be the superclass of Egg, AnimalFood and
+ANIMAL_MANURE.
+
+########
+# Step 10
+
+File affected: FarmObject.java, NonLiving.java, ANIMAL_MANURE.java, Pig.java, Chicken.java
+
+Code affected:
+
+    |1. FarmObject.java:
+    |FarmObject constructor
+    |
+    |2. NonLiving.java:
+    |NonLiving constructor
+    |
+    |3. ANIMAL_MANURE.java:
+    |ANIMAL_MANURE.appearance, ANIMAL_MANURE.colour, ANIMAL_MANURE.d, ANIMAL_MANURE.x, ANIMAL_MANURE.y,
+    |ANIMAL_MANURE.manure_appearnce, ANIMAL_MANURE constructor, ANIMAL_MANURE.setLocation,
+    |
+    |4. Pig.java:
+    |Pig.clearStomach
+    |
+    |5. Chicken.java:
+    |Chicken.digest
+    |
+
+Flaw: The FarmObject constructor and NonLiving constructor are lack of the ability to set the color. All the affected
+code in ANIMAL_MANURE.java have duplicated code. Methods Pig.clearStomach and Chicken.digest have unnecessary codes.
+
+
+Fix:
+    |1.I rewrote the constructor for FarmObject to allow it set the Appearance and Color rather than only Appearance by
+    |adding parameter color and set it in method body.
+    |
+    |2.I rewrote the constructor for NonLiving by adding another parameter 'color' to let it be consistent with its
+    |superclass 'FarmObject'
+    |
+    |3.I removed ANIMAL_MANURE.appearance, ANIMAL_MANURE.colour, ANIMAL_MANURE.d, ANIMAL_MANURE.x, ANIMAL_MANURE.y,
+    |ANIMAL_MANURE.manure_appearnce, since those attributes will be inherited from FarmObject.java. I rewrote the
+    |ANIMAL_MANURE constructor by adding three parameters: appearance, x coordinates and y coordinates; in its body,
+    |it will call its superclass's constructor with given appearance and color, and call the method setLocation
+    |(inherited from superclass) with given x and y. I removed the method ANIMAL_MANURE.setLocation.
+    |
+    |4.Removed unnecessary codes by shorting 3 lines of codes into one line when it created manure.
+    |
+    |5.Removed unnecessary codes by shorting 3 lines of codes into one line when it created manure.
+    |
+
+############
+# Step 11
+
+File affected: AnimalFood.java, Human.java
+
+Code affected: AnimalFood.appearance, AnimalFood.colour, AnimalFood.x, AnimalFood.y, AnimalFood.test,
+AnimalFood Constructor, AnimalFood.setLocation, AnimalFood.drawString. Human.dropFood
+
+Flaw: AnimalFood.appearance, AnimalFood.colour, AnimalFood.x, AnimalFood.y are duplicated codes; AnimalFood.test is
+nonsense; AnimalFood Constructor is not using its superclass's constructor which leads to unnecessary codes;
+AnimalFood.setLocation is unnecessary. AnimalFood.drawString has a typo in function body.
+body. Unnecessary codes in Human.dropFood leading to duplicate code.
+
+Fix: Removed AnimalFood.appearance, AnimalFood.colour, AnimalFood.x, AnimalFood.y, AnimalFood.test,
+AnimalFood.setLocation. Rewrote AnimalFood Constructor by adding two parameters: x and y; let it call its
+superclass's constructor with "%" as the default appearance and set the location with give x and y.
+For AnimalFood.drawString, changed input "colour" to "color". For Human.dropFood, rewrote its body.
+
+#############
+# Step 12
+
+File affected: Egg.java, Chicken.java
+
+Code affected: Egg.eggShape, Egg.x, Egg.y, Egg.setLocation, Chicken.lagEgg, Egg.draw
+
+Flaw: Unnecessary codes in Chicken.layEgg, Egg.eggShape, Egg.x, Egg.y, Egg.setLocation leading to duplicated codes. A
+typo in Egg.draw when it calls g.fillText.
+
+Fix: Removed the codes about Egg.eggShape, Egg.x, Egg.y, Egg.setLocation. Rewrite the method body for Chicken.layEgg,
+and fixed the typo in Egg.draw.
+
+##############
+# Step 13
+
+File affected: NonLiving.java, ANIMAL_MANURE.java, Egg.java, Chicken.java, Pig.java, Main.java
+
+Code affected: The doc documents of NonLiving.java and Egg.java. The name of class in ANIMAL_MANURE.java and the name
+of its constructor. Chicken.digest, Pig.clearStomach, Main.start, Main.drawShapes
+
+Flaw: the doc document of those files are not accurate or have mistakes. The ANIMAL_MANURE.java is named wrong.
+
+Fix: Develop the doc document of NonLiving.java and Egg.java. Rename the file ANIMAL_MANURE.java to AnimalManure.java.
+refactored all the relevant codes due to change of file name.
+
+############
+# Step 14
+
+File affected: Pig.java, Species.java, Main.java
+
+Code affected: Pig.appearance, Pig.goingRight, pig.r, pig.c, pig.colour, Pig constructor, Pig.setLocation,
+Pig.reverseAppearance, pig.turnAround, Pig.drawString, Pig.draw,Pig.move, Pig.clearStomach, Species.goingRight,
+Main.start
+
+Flaw: Unnecessary statements about its attributes and some methods. A typo in Pig.drawString, wrong reference call to
+the coordination of pig in Pig.draw and Pig.clearStomach and Pig.move. Unnecessary codes when creating instances of pigs
+leading to duplicated codes.
+
+Fix: Removed all the unnecessary statements for pig's attributes including Pig.appearance, Pig.goingRight, pig.r,
+pig.c, pig.colour. Rewrote the Pig Constructor with two parameters x and y as coordination. Removed all the unnecessary
+methods for pig leading to duplicated code including Pig.setLocation,Pig.reverseAppearance, pig.turnAround. Fixed the
+symbol used in Pig.drawString and Pig.clearStomach and Pig.Move, fixed the type in Pig.drawString. Change the
+Species.goingRight from private to protected. Rewrote the codes that instantiating new Pigs in Main.start in purpose of
+eliminating duplicated codes.
+
+############
+# Step 15
+
+File affected: Pig.java, Chicken.java, Main.java
+
+Code.affected: Pig.move. Chicken.goingRight, Chicken.appearance, Chicken.r, Chicken.colour, Chicken.c, Chicken
+constructor, Chicken.setLocation, Chicken.reverseAppearance, Chicken.turnAround, Chicken.drawString, Chicken.draw,
+Chicken.move, Chicken.layEgg, Chicken.digest, Main.start
+
+Flaw: A typo in the method Pig.move, in part of the code if moving left or right, it suppose to be x changes instead of
+y. Unnecessary statements about Chicken.java attributes and some methods. A typo in Chicken.drawString.
+Inconsistent symbol reference in Chicken.draw, Chicken.move and Chicken.layEgg and Chicken.digest. Inconsistent
+Chicken constructor call in Main.start.
+
+Fix: Fixed the typo, make it from y -= 1 to x -= 1. Removed all the unnecessary statements for Chicken's attributes
+including Chicken.goingRight, Chicken.appearance, Chicken.r, Chicken.colour, Chicken.c. Rewrote Chicken constructor with
+adding two parameters x and y as coordination. Removed unnecessary methods leading to duplicate codes including
+Chicken.setLocation, Chicken.reverseAppearance, Chicken.turnAround. Fixed the typo in Chicken.drawString (colour to
+color). Fixed the inconsistent symbol reference (r, c) to (x, y) in Chicken.draw, Chicken.move and Chicken.layEgg and
+Chicken.digest. Rewrote the code of instantiating Chicken instance in Main.start, decrease the number of Chicken from 10
+to 5.
+
+###############
+# Step 16
+
+File affected: Human.java, Main.java
+
+Code affected: Human.appearance, Human.r, Human.c, Human.goingRight, Human.thing, Human constructor, Human.setLocation,
+Human.reverseAppearance, Human.turnAround, Human.dropFood, Human.draw, Human.move.
+
+Flaw: Unnecessary statements for initiating attributes including Human.appearance, Human.r, Human.c, Human.goingRight,
+Human.thing leading to duplicated codes. Unnecessary codes in methods including Human constructor, Human.setLocation,
+Human.reverseAppearance, Human.turnAround leading to duplicated codes. Inconsistent symbol reference call in
+Human.dropFood, Human.draw and Human.move.
+
+Fix: Removed all the unnecessary statements for Human's attributes including  Human.appearance, Human.r, Human.c,
+Human.goingRight, Human.thing. Rewrote Human constructor with adding to parameters x and y as coordination, and made
+the appearance to be 'ziyao' (my name). Removed unnecessary methods leading to duplicate codes including
+Human.setLocation, Human.reverseAppearance, Human.turnAround. Fixed the inconsistent symbol reference (r, c) to (x, y)
+in Human.dropFood, Human.draw and Human.move. Rewrote the code of instantiating Human instance in Main.start.
+
+Human extends Species now.
+
+##############
+# Step 17
+
+File affected: Pig.java, Chicken.java, Human.java
+
+Code affected: Pig.drawString, Chicken.drawString, Human.drawString.
+
+Flaw: Wrong symbol reference called leading to reverse of x and y coordination on the simulation screen.
+
+Fix: change (y, x) to (x, y) in these three methods.
+
+##############
+# Step 18
+
+File affected: Human.java, Main.java, AnimalFood.java, Pig.java, Chicken.java
+
+Code affected: Human.myFarmAnimals, Human.dropFood, Main.start, Main.drawShapes, AnimalFood.d , AnimalFood.BlownUp
+AnimalFood.BlownDown, AnimalFood.BlownLeft, AnimalFood.BlownRight, Pig.clearStomach, Chicken.digest,
+Chicken.layEgg, Chicken.aneggishere
+
+File created: FarmManager.java
+
+Flaw: The human is taking the role of storing all objects in this farm simulation which leads to low cohesion.
+Duplicated codes for creating AnimalFood instance in Human.dropFood. Unnecessary code AnimalFood.d leading to duplicated
+codes. Unnecessary codes in methods AnimalFood.BlownUp, AnimalFood.BlownDown, AnimalFood.BlownLeft,
+AnimalFood.BlownRight leading to duplicated codes. Method Chicken.aneggishere is located in wrong file, leading to
+low cohesion.
+
+Fix: created FarmManager.java to store all instances in farm for higher cohesion. Human.myFarmAnimals is now removed.
+Human.dropFood is now rewritten, it adds four new AnimalFood in ArrayList FarmManager.food now. Rewrote the way that
+Main.start instantiates instances of human and animals and all necessary related changes; Rewrote the way that
+Main.drawShapes loop over all the farmobjects and draw them. Removed useless attribute AnimalFood.d. Combined methods
+AnimalFood.BlownUp, AnimalFood.BlownDown, AnimalFood.BlownLeft and AnimalFood.BlownRight into one method
+AnimalFood.blown. Rewrote Pig.clearStomach and Chicken.digest to let it poop by adding new AnimalManure into list
+FarmManager.poop. Rewrote Chicken.lagEgg to let it lay an egg by adding new Egg into list FarmManager.egg. Removed
+Chicken.aneggishere, added new method Human.findEgg to takeover the role of finding egg.
+
+##############
+# Step 19
+
+File affected: AnimalFood.java, Egg.java, AnimalManure.java, Human.java, FarmObject.java
+
+Code affected: AnimalFood.drawString, Egg.draw, AnimalManure.drawString, Egg.getX, Human.move
+
+Flaw: inconsistent coordinate names in AnimalFood.draw, Egg.draw, AnimalManure.draw. Wrong location of method Egg.getX.
+Human.move is not working properly, the human is not picking up the egg.
+
+Fix: changed (y, x) to (x, y) in AnimalFood.drawString, Egg.draw, AnimalManure.drawString. Add two new methods
+FarmObject.getX and FarmObject.getY in FarmObject.java, removed method Egg.getX. Fixed the bugs in Human.move, human now
+picking up the eggs.
+
+##############
+# Step 20
+
+File affected: Pig.java, Chicken.java
+
+Code affected: Pig.move, Chicken.move
+
+Flaw: Pig and Chicken are not going for food and they poop without eating anything. There are bugs in these two methods.
+
+Fix: Fixed the bugs in Pig.move and Chicken.move. Add new attributes boolean full in both pig and chicken, represents if
+the chicken has eaten something. Chicken and Pig are going for food now, and they now only poop if they have eaten.
+
+#############
+# Step 21
+
+File affected: Species.java, Chicken.java, Pig.java, Human.java
+
+Code affected: Chicken.digest, Pig.clearStomach, Human.move, Chicken.move, Pig.move, Human.findEgg, Chicken.findTarget,
+Pig.findTarget. Human.target, Chicken.target, Pig.target.
+
+Flaw: Duplicated codes in all above methods and attributes.
+
+Fix: Added a new method Species.poop to take over the role of Chicken.digest and Pig.clearStomach, removed the methods
+Chicken.digest and Pig.clearStomach. Added a new method Species.randomlyMove to let all its subclass call this method
+to move randomly when they don't have target to go for. New attribute target in Species; new method Species.findTarget
+. Refactored some files into google java format now.
+
+##############
+# Step 22
+
+File affected: Main.java, FarmManager.java, Species.java
+
+Code affected: Species.findTarget, Main.start, Main.drawShapes
+
+Update: Added a brand new class PoopCollector which extends Species. Its purpose is to collect to AnimalManures.
+Created new instance of PoopCollector in Main.start and let Main.drawShapes to be able to draw it. Let the method
+Species.findTarget be able to work for PoopCollector as well.
+
+############
+# Step 23
+
+File affected: Main.java, FarmManager.java, FarmObject.java, Species.java
+
+Code affected: none
+
+Fixed some inaccurate doc document in those files.

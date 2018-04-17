@@ -1,0 +1,49 @@
+### Compiling unit tests ###
+
+### Running unit tests ###
+╷
+├─ JUnit Jupiter ✔
+│  └─ FlightTest ✔
+│     ├─ testAirportToStringOneFlight() ✔
+│     ├─ testOnSameFlight() ✔
+│     ├─ testFlightToStringFourAirports() ✔
+│     ├─ testFlightEquals() ✔
+│     ├─ testFlightToStringNoAirports() ✔
+│     ├─ testFlightGetDate() ✔
+│     ├─ testFlightGetName() ✔
+│     ├─ testAirportNotVisitedBy() ✔
+│     ├─ testOneFlightTwoAirports() ✔
+│     ├─ testAirportToStringThreeFlights() ✔
+│     ├─ testNotOnSameFlight() ✔
+│     ├─ testAirportEqualsTwoFlights() ✔
+│     ├─ testAirportNotEqualsTwoAirports() ✔
+│     ├─ testAirportWasVisitedBy() ✔
+│     ├─ testAirportGetName() ✔
+│     ├─ testAirportNotEqualsExtraFlight() ✔
+│     ├─ testOneFlightAddFlightGetAirports() ✔
+│     ├─ testAirportNotEqualsNonAirport() ✔
+│     ├─ testFlightNotEqualsDate() ✔
+│     ├─ testFlightNotEqualsName() ✔
+│     ├─ testAirportToStringNoFlights() ✔
+│     ├─ testOneFlightAddAirportGetAirports() ✔
+│     ├─ testAirportEqualsTwoFlightsDifferentOrder() ✔
+│     ├─ testFlightToStringOneFlight() ✔
+│     ├─ testAirportEqualsNoFlights() ✔
+│     ├─ testFlightEqualsDifferentAirports() ✔
+│     └─ testGetAirportOneFlightNoAirport() ✔
+└─ JUnit Vintage ✔
+
+Test run finished after 74 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[        27 tests found           ]
+[         0 tests skipped         ]
+[        27 tests started         ]
+[         0 tests aborted         ]
+[        27 tests successful      ]
+[         0 tests failed          ]
+

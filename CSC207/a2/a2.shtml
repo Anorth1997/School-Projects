@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Mac OS X https://github.com/w3c/tidy-html5/tree/c63cc39">
+        <title>
+            CSC207H: Assignment 2
+        </title>
+    </head>
+    <body>
+        <h1>
+            CSC207H: Assignment 2
+        </h1>
+        <p>
+            <strong>Group size:</strong> Individual
+        </p>
+        <p>
+            <strong>Summary:</strong> Understand a mostly-working program that has significant style and design flaws and some bugs, clean it up, and then add a feature.
+        </p>
+        <h2>
+            Learning objectives
+        </h2>
+        <p>
+            By the end of this assignment, you will have
+        </p>
+        <ul>
+            <li>worked with version control, making frequent commits to your git repository,
+            </li>
+            <li>read and worked with code that is not well designed,
+            </li>
+            <li>refactored the code to make it more readable and maintainable,
+            </li>
+            <li>extensively used IntelliJ's refactoring tools,
+            </li>
+            <li>found and fixed several bugs,
+            </li>
+            <li>added features to the refactored code,
+            </li>
+            <li>written useful Javadoc and internal comments, and maintained or improved the visual style of the given code,
+            </li>
+            <li>Used inheritance extensively to clean up code.
+            </li>
+        </ul>
+        <h2>
+            Problem domain
+        </h2>
+        <p>
+            The starter code is a simulation of a farm that includes pigs and chickens that eat food and excrete manure. The chickens also lay eggs. A human walks around scattering food and picking up eggs. (The starter code mostly does this, but it's really gross code and has some significant bugs.)
+        </p>
+        <h2>
+            Code Smells
+        </h2>
+        <p>
+            In this assignment, you will be finding and fixing <a target="_blank" href="https://en.wikipedia.org/wiki/Code_smell">Code smells [Wikipedia]</a>, which are warning signs in your code. Take a look at the list of common code smells on that Wikipedia page. There are related <a target="_blank" href="https://en.wikipedia.org/wiki/Design_smell">Design smells [Wikipedia]</a>, which you should also read about.
+        </p>
+        <p>
+            Here is a blog post that discusses some of <a target="_blank" href="https://blog.codinghorror.com/code-smells/">the more common smells</a>.
+        </p>
+        <h2>
+            Getting set up
+        </h2>
+        <p>
+            Clone your MarkUs repository. Inside that repository is a directory called <code>a2</code>, and it contains this handout. It also contains a subdirectory <code>src</code>. Inside the <code>src</code> directory is the directory for the Java packages used by the starter code, as well as the starter code itself.
+        </p>
+        <h3>
+            Setting up
+        </h3>
+        <p>
+            It's probably easiest to clone your repository and then create a new IntelliJ project in the a2 directory, which contains the <code>src</code> directory with the starter code.
+        </p>
+        <p>
+            <strong>Don't change the code yet.</strong>
+        </p>
+        <h3 id="flaws_intro">
+            Running for the first time and seeing bugs
+        </h3>
+        <p>
+            Run the program. You should see a window containing a couple of funny-looking chickens and pigs. There is also a "human" that occasionally scatters food, which the animals are supposed to eat but currently don't, and the human tries and fails (because of a bug) to pick up eggs that the chickens lay. Instead, the animals are supposed to move toward food when it drops, and eat it if they get to it first. The animals also currently defecate even though they haven't eaten anything. Instead, they should only be able to defecate once for each time they have eaten food. You'll eventually fix all these issues.
+        </p>
+        <p>
+            There is also an occasional exception that looks a bit like this:
+        </p>
+        <pre>
+    Exception in thread "JavaFX Application Thread" java.lang.ArrayIndexOutOfBoundsException: -2
+        at farmpen.Chicken.digest(Chicken.java:169)
+        at farmpen.Chicken.move(Chicken.java:125)
+        at sample.Main$1.handle(Main.java:94)
+</pre>
+        <p>
+            Again, you'll fix all these bugs as you work through the assignment. <strong>Don't debug it yet. In fact, don't try to fix this until you've made significant progress on the assignment, including establishing a standard coordinate system.</strong>
+        </p>
+        <h3>
+            The Google Java Style Guide
+        </h3>
+        <p>
+            Google has published a <a target="_blank" href="https://google.github.io/styleguide/javaguide.html">Java Style Guide</a>. <strong>You must set up IntelliJ to use it for the first part of this assignment.</strong>
+        </p>
+        <p>
+            Follow the <a href="https://stackoverflow.com/questions/42979700/how-to-configure-google-java-code-formatter-in-intellij-idea-17">instructions on StackOverflow to install the google-java-format Plugin.</a>. Now when you select <code>Code -&gt;Reformat Code</code> it will follow the Java style guide as much as possible.
+        </p>
+        <p>
+            If you need help, search the web and the course discussion boards, and if you can't find an answer, ask!
+        </p>
+        <h2>
+            What to do
+        </h2>
+        <p>
+            You must do this assignment one step a time, <strong>pushing your changes whenever you finish a step</strong>.
+        </p>
+        <h3>
+            Step 1: Create notes.txt
+        </h3>
+        <p>
+            Create a file called <code>notes.txt</code> in the <code>a2</code> directory of your repo. Copy and paste this into your file:
+        </p>
+        <pre>
+#########
+# Step 1
+
+Code affected: none
+
+Created this file.
+</pre>
+        <p>
+            Add and commit it with this commit message: <code>"Added notes.txt for keeping track of changes during a2."</code>. Copy and paste that message! Then push your changes.
+        </p>
+        <p>
+            <b>Sanity check:</b> Clone your repo again, somewhere else on your hard drive, and make sure that <code>a2/notes.txt</code> exists and has the expected contents. If it doesn't, keep trying until it does.
+        </p>
+        <h3>
+            Step 2: Reformat the starter code
+        </h3>
+        <p>
+            Open up <code>Wind.java</code> and study the code. It's gross. Select <code>Code-&gt;Reformat Format</code>, or use the keyboard shortcut. Do this with the rest of the files. Don’t fix bugs, don’t manually add spaces, don’t move anything around, just use Google’s style formatter.
+        </p>
+        <p>
+            Run the program to make sure that it still works.
+        </p>
+        <p>
+            Make a note in <code>notes.txt</code> that you reformatted all the source code. Copy and paste this as your note:
+        </p>
+        <pre>
+#########
+# Step 2
+
+Code affected: all .java files
+
+Reformatted using the Google Java style formatter.
+</pre>
+        <p>
+            Git add each <code>.java</code> file, and also add <code>notes.txt</code>. Commit with the previous message and push.
+        </p>
+        <p>
+            It's up to you whether you want to do a sanity check, but we recommend it. You can do this by using <code>git pull</code> on the previous file.
+        </p>
+        <p>
+            <strong>So far, everyone's repositories should have exactly the same changes in them.</strong>
+        </p>
+        <h3>
+            Step 3: read the starter code
+        </h3>
+        <p>
+            There are many design flaws. Here's a simple one: method <code>turnAround</code> in class <code>Pig</code> has duplicate code inside an unnecessary <code>if</code> statement. Fix it. That function only needs to be 2 lines long.
+        </p>
+        <p>
+            Add this note to notes.txt:
+        </p>
+        <pre>
+#########
+# Step 3
+
+Code affected: Pig.turnAround
+
+Flaw: unnecessary if, leading to duplicate code.
+
+Fix: replaced if statement with a single assignment statement.
+</pre>
+        <p>
+            <strong style="color:darkred">That is the format that every one of your notes should follow.</strong> It includes the list of methodss and instance variables that are affected, the flaw that you addressed, and a note about how you fixed it. The flaw and the fix should be concise: no more than a couple of sentences each. <strong>The TAs will be using these notes as the primary guide to marking your assignment, so be clear in your communication.</strong> Bad grammar and spelling, unclear descriptions, and excessive verbosity will all receive mark deductions.
+        </p>
+        <p>
+            Add <code>notes.txt</code> and <code>Pig.java</code>, commit (with the clear commit message above), and push.
+        </p>
+        <h3>
+            Step 4 to Step N-2
+        </h3>
+        <p>
+            This is where you will do the bulk of the work. Continue identifying flaws (code smells) and <strong>fixing one flaw per push</strong>. After each fix, make a clear note in <code>notes.txt</code>, then add, commit (with a clear commit message), and push your changes.
+        </p>
+        <p>
+            There are many flaws in the code, and these steps will contain the bulk of your work: bad names, duplicate code, ugly code, nearly-duplicate classes, inappropriate print statements (when was the last time you ran an app that printed anything?), inconsistent coordinate names, inappropriate use of <code>static</code>, chances to use inheritance, bad visibility modifiers, recalculating a value over an over when it only needs to be done once, variables declared in wrong classes, and a huge waste of processing time looping over a <em>sparse</em> (nearly-empty) 2D array. You can refer back to the "Code Smell" links for more ideas, and you will be marked on the quality of your fixes. By the end of this process, there should be no obvious design problems — the code should look very different!
+        </p>
+        <p>
+            Along the way, address every one of the yellow style warning markers that appear along the right side of the code. <strong>By the time you're done, there should be no markers.</strong> You can fix multiple markers in the same commit if you like.
+        </p>
+        <p>
+            Also along the way, fix the bugs described in the <a href="#flaws_intro"><code>Running for the first time and seeing bugs</code></a> section.
+        </p>
+        <p>
+            If it helps, feel free to include more humans in your simulation.
+        </p>
+        <h3>
+            Fix the exception
+        </h3>
+        <p>
+            By now, you should know the code quite well. The exception described at the top happened when a creature steps outside the window and digests or scatters food, attempting to create an item with a negative index in the 2D array. Fix this by preventing creatures from moving outside the window.
+        </p>
+        <p>
+            Describe your fixes in <code>notes.txt</code>, and add, commit, and push your changes.
+        </p>
+        <p>
+            If you fixed a bug in an ealier step, say which one.
+        </p>
+        <h3>
+            Step N-1: finish the comments and Javadoc
+        </h3>
+        <p>
+            You should have been cleaning up the comments and Javadoc while you read through and corrected the code. However, now is the time to go back and make sure that there are enough comments to fully describe each class, that no comment describes easily-read code (forcing the reader to read the same thing twice), and to make sure that the comments match the code (and not a previous version of the code).
+        </p>
+        <p>
+            Include "Finalized Javadoc" in notes.txt, and add, commit, and push your changes. If you wrote significant amounts of Javadoc and/or comments in an earlier step, say which one.
+        </p>
+        <h3>
+            Step N: Add a new farm item
+        </h3>
+        <p>
+            Now that your code is beautiful, design and add a new farm item. It must meaningfully interact with an existing creature or item in the simulation. There are many possibilities, and we're running MOSS to detect similarities, so please do not copy from each other.
+        </p>
+    </body>
+</html>
