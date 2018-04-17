@@ -1,0 +1,95 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab4/part2
+veightbitcounter
+Z0 !s110 1518212288
+!i10b 1
+!s100 @>4fjZRl3b4eTBil3:IHD0
+IaT]ego<^5[XcokIkzE^5j0
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab5/part1
+Z3 w1518212272
+Z4 8C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab5/part1/part1.v
+Z5 FC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab5/part1/part1.v
+L0 44
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1518212287.000000
+Z8 !s107 C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab5/part1/part1.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab5/part1/part1.v|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vpart1
+R0
+!i10b 1
+!s100 J]6Xze2BM;cGIMO@X^c0h0
+Ih?zJUk6IL1cR[>XQOMggY1
+R1
+R2
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vSevenSegmentDecoder
+R0
+!i10b 1
+!s100 NDm^PeU>AjnaI7@?<CZQ73
+Im`^;FV=e^gR:_57fhIk]b3
+R1
+R2
+R3
+R4
+R5
+L0 30
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@seven@segment@decoder
+vtflipflop
+R0
+!i10b 1
+!s100 l]?aOR`VKTz3gE;U5iXb80
+I^j^D4ZMXDfIkPBNO7T4JJ2
+R1
+R2
+R3
+R4
+R5
+L0 124
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11

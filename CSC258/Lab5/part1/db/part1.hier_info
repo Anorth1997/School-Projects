@@ -1,0 +1,203 @@
+|part1
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+SW[2] => ~NO_FANOUT~
+SW[3] => ~NO_FANOUT~
+SW[4] => ~NO_FANOUT~
+SW[5] => ~NO_FANOUT~
+SW[6] => ~NO_FANOUT~
+SW[7] => ~NO_FANOUT~
+SW[8] => ~NO_FANOUT~
+SW[9] => ~NO_FANOUT~
+KEY[0] => KEY[0].IN1
+KEY[1] => ~NO_FANOUT~
+KEY[2] => ~NO_FANOUT~
+KEY[3] => ~NO_FANOUT~
+HEX0[0] <= SevenSegmentDecoder:s0.ss_out
+HEX0[1] <= SevenSegmentDecoder:s0.ss_out
+HEX0[2] <= SevenSegmentDecoder:s0.ss_out
+HEX0[3] <= SevenSegmentDecoder:s0.ss_out
+HEX0[4] <= SevenSegmentDecoder:s0.ss_out
+HEX0[5] <= SevenSegmentDecoder:s0.ss_out
+HEX0[6] <= SevenSegmentDecoder:s0.ss_out
+HEX1[0] <= SevenSegmentDecoder:s1.ss_out
+HEX1[1] <= SevenSegmentDecoder:s1.ss_out
+HEX1[2] <= SevenSegmentDecoder:s1.ss_out
+HEX1[3] <= SevenSegmentDecoder:s1.ss_out
+HEX1[4] <= SevenSegmentDecoder:s1.ss_out
+HEX1[5] <= SevenSegmentDecoder:s1.ss_out
+HEX1[6] <= SevenSegmentDecoder:s1.ss_out
+
+
+|part1|eightbitcounter:e0
+enable => enable.IN1
+clk => clk.IN8
+clear_b => clear_b.IN8
+Q[0] <= tflipflop:t0.Q
+Q[1] <= tflipflop:t1.Q
+Q[2] <= tflipflop:t2.Q
+Q[3] <= tflipflop:t3.Q
+Q[4] <= tflipflop:t4.Q
+Q[5] <= tflipflop:t5.Q
+Q[6] <= tflipflop:t6.Q
+Q[7] <= tflipflop:t7.Q
+
+
+|part1|eightbitcounter:e0|tflipflop:t0
+enable => Q~reg0.ENA
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part1|eightbitcounter:e0|tflipflop:t1
+enable => Q~reg0.ENA
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part1|eightbitcounter:e0|tflipflop:t2
+enable => Q~reg0.ENA
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part1|eightbitcounter:e0|tflipflop:t3
+enable => Q~reg0.ENA
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part1|eightbitcounter:e0|tflipflop:t4
+enable => Q~reg0.ENA
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part1|eightbitcounter:e0|tflipflop:t5
+enable => Q~reg0.ENA
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part1|eightbitcounter:e0|tflipflop:t6
+enable => Q~reg0.ENA
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part1|eightbitcounter:e0|tflipflop:t7
+enable => Q~reg0.ENA
+clk => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part1|SevenSegmentDecoder:s0
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN0
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[1] => ss_out.IN0
+c[1] => ss_out.IN1
+c[1] => ss_out.IN0
+c[1] => ss_out.IN1
+c[1] => ss_out.IN1
+c[1] => ss_out.IN0
+c[1] => ss_out.IN1
+c[1] => ss_out.IN1
+c[1] => ss_out.IN1
+c[1] => ss_out.IN0
+c[1] => ss_out.IN1
+c[2] => ss_out.IN1
+c[2] => ss_out.IN0
+c[2] => ss_out.IN0
+c[2] => ss_out.IN0
+c[2] => ss_out.IN1
+c[2] => ss_out.IN0
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+ss_out[0] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[1] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[2] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[3] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[4] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[5] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[6] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|part1|SevenSegmentDecoder:s1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN0
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[0] => ss_out.IN1
+c[1] => ss_out.IN0
+c[1] => ss_out.IN1
+c[1] => ss_out.IN0
+c[1] => ss_out.IN1
+c[1] => ss_out.IN1
+c[1] => ss_out.IN0
+c[1] => ss_out.IN1
+c[1] => ss_out.IN1
+c[1] => ss_out.IN1
+c[1] => ss_out.IN0
+c[1] => ss_out.IN1
+c[2] => ss_out.IN1
+c[2] => ss_out.IN0
+c[2] => ss_out.IN0
+c[2] => ss_out.IN0
+c[2] => ss_out.IN1
+c[2] => ss_out.IN0
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+c[3] => ss_out.IN1
+ss_out[0] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[1] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[2] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[3] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[4] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[5] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+ss_out[6] <= ss_out.DB_MAX_OUTPUT_PORT_TYPE
+
+

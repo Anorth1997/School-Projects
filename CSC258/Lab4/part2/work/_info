@@ -1,0 +1,137 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab3/part3
+valu
+Z0 !s110 1517883294
+!i10b 1
+!s100 U^HT967jAh5L=W1=I;]]81
+ID6zT72iAYf6bVaX;Eof5F1
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab4/part2
+Z3 w1517590490
+Z4 8C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab4/part2/Verilog1.v
+Z5 FC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab4/part2/Verilog1.v
+L0 73
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1517883293.000000
+Z8 !s107 C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab4/part2/Verilog1.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab4/part2/Verilog1.v|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vfulladder
+R0
+!i10b 1
+!s100 Udj2Zk[m9Ko=;P08>CBZV1
+Izd?N6;N5I]@H5RCUeD3gj1
+R1
+R2
+R3
+R4
+R5
+L0 120
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vpart2
+R0
+!i10b 1
+!s100 GHF<0jWMAL5ek^LUAT5Gf2
+I=S68d6jQRj2fn^DcTA=Th2
+R1
+R2
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vregister
+R0
+!i10b 1
+!s100 fkN52_PzX32[Mo;n2G=Da0
+I2ZgYSFcfH>[<AdY>z5m<S0
+R1
+R2
+R3
+R4
+R5
+L0 56
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vripplecarryadder
+R0
+!i10b 1
+!s100 REQjd5BOP4F]kHJ;QcnVi2
+IP@3lJ4Hdod13`LlmP4V::3
+R1
+R2
+R3
+R4
+R5
+L0 103
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vSevenSegmentDecoder
+R0
+!i10b 1
+!s100 D2UiOaWFfj2:_?EI4I9IB3
+IDz?9nd[4<f<1]U?ngz<ii2
+R1
+R2
+R3
+R4
+R5
+L0 130
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@seven@segment@decoder

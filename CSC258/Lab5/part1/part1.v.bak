@@ -1,0 +1,96 @@
+module eightbitcounter(enable, clk, clear_b, Q);
+	input enable, clk, clear_b;
+	output [7:0] Q;
+	
+	wire [6:0] connection;
+	
+	tflipflop t0(
+		.enable(enable),
+		.clk(clk),
+		.clear_b(clear_b),
+		.Q(Q[0])
+		);
+	
+	assign connection[0] = Q[0] && enable;
+	
+	tflipflop t1(
+		.enable(connection[0]),
+		.clk(clk),
+		.clear_b(clear_b),
+		.Q(Q[1])
+		);
+	
+	assign connection[1] = Q[1] && connection[0];
+	
+	tflipflop t2(
+		.enable(connection[1]),
+		.clk(clk),
+		.clear_b(clear_b),
+		.Q(Q[2])
+		);
+	
+	assign connection[2] = Q[2] && connection[1];
+	
+	tflipflop t3(
+		.enable(connection[2]),
+		.clk(clk),
+		.clear_b(clear_b),
+		.Q(Q[3])
+		);
+		
+	assign connection[3] = Q[3] && connection[2];
+		
+	tflipflop t4(
+		.enable(connection[3]),
+		.clk(clk),
+		.clear_b(clear_b),
+		.Q(Q[4])
+		);
+		
+	assign connection[4] = Q[4] && connection[3];	
+		
+	tflipflop t5(
+		.enable(connection[4]),
+		.clk(clk),
+		.clear_b(clear_b),
+		.Q(Q[5])
+		);
+		
+	assign connection[5] = Q[5] && connection[4];	
+		
+	tflipflop t6(
+		.enable(connection[5]),
+		.clk(clk),
+		.clear_b(clear_b),
+		.Q(Q[6])
+		);
+		
+	assign connection[6] = Q[6] && connection[5];
+	
+	tflipflop t7(
+		.enable(connection[6]),
+		.clk(clk),
+		.clear_b(clear_b),
+		.Q(Q[7])
+		);
+
+endmodule		
+	
+	
+
+module tflipflop(enable, clk, clear_b, Q);
+	input enable, clk, clear_b;
+	output Q;
+	reg Q;
+	
+	always @(posedge clk, negedge clear_b)
+	begin
+		if (clear_b == 1'b0) 
+
+			Q <= 0;
+
+		else 
+			Q <= enable ^ Q;
+	end
+endmodule
+	

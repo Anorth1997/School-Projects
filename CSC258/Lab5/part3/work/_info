@@ -1,0 +1,118 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab5/part2
+vLUT
+Z0 !s110 1518492120
+!i10b 1
+!s100 hgz=Ag<=a>9z^Tmkk=AMz2
+I?6Ciz`lj;6Y0Ned3GPJ@G2
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab5/part3
+Z3 w1518492107
+Z4 8C:\Users\chenz\Desktop\University\SecondYear2017\Winter\CSC258\Tutorial\Lab5\part3\part3.v
+Z5 FC:\Users\chenz\Desktop\University\SecondYear2017\Winter\CSC258\Tutorial\Lab5\part3\part3.v
+L0 71
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1518492120.000000
+Z8 !s107 C:\Users\chenz\Desktop\University\SecondYear2017\Winter\CSC258\Tutorial\Lab5\part3\part3.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:\Users\chenz\Desktop\University\SecondYear2017\Winter\CSC258\Tutorial\Lab5\part3\part3.v|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+n@l@u@t
+vmorsecode
+R0
+!i10b 1
+!s100 YdaOFC=L?4WAWX;I6CX_b2
+I7_bl^`@EV9LT<_Zf0kFD02
+R1
+R2
+R3
+R4
+R5
+L0 18
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vpart3
+R0
+!i10b 1
+!s100 ?^fCT77C`=VIXL=BL=mSg3
+IoOAdX<YWk=eko6ZEm]G0[2
+R1
+R2
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vRateDivider
+R0
+!i10b 1
+!s100 D:QI1MZL;GKzhWL]F[gb12
+IE]GKY0^h<d3ozigJC@SY80
+R1
+R2
+R3
+R4
+R5
+L0 49
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@rate@divider
+vShiftRegister
+R0
+!i10b 1
+!s100 7]g3^gd?:X?PX]CnY4d7b0
+I=@7UXH7<mUnMdMh2hDTl81
+R1
+R2
+R3
+R4
+R5
+L0 93
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@shift@register

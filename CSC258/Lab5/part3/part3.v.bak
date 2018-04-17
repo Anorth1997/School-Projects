@@ -1,0 +1,46 @@
+module RateDivider(max, clock, reset_n, out);
+	input [21:0] max = 22'b1001100010010110100000;
+	input clock, reset_n;
+	output out;
+	
+	reg [21:0] q;
+	
+	always @(posedge clock) 
+	begin 
+		if ((reset_n) == 1'b0)
+			q <= 0;
+		else 
+			if (q == 0) 
+				q <= max;
+			else 
+				q <= q - 1'b1;
+		
+	end
+	
+	assign out = (q == 0) ? 1 : 0;
+	
+endmodule 
+
+module LUT(s, q);
+	input [2:0] s; //selecters
+	output [13:0] q; // 14-bit representation of letters
+	reg [13:0] q;
+	
+	always @(*) 
+	begin 
+		case(s[2:0])
+			3'b000: q = 14'b10101000000000;
+			3'b001: q = 14'b11100000000000;
+			3'b010: q = 14'b10101110000000;
+			3'b011: q = 14'b10101011100000;
+			3'b100: q = 14'b10111011100000;
+			3'b101: q = 14'b11101010111000;
+			3'b110: q = 14'b11101011101110;
+			3'b111: q = 14'b11101110101000;
+		endcase
+	end
+
+module ShiftRegister(bit, enable, clock, reset, q);
+	input [13:0] bit;
+	input enable;
+	
