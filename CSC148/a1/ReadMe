@@ -1,0 +1,4 @@
+This assignment implements a simple game of The Tower of Hanoi with both gui and controller to play around with it.
+This assignment is written in Python
+
+To play it with gui, run the file gui_controller.py; to play it with console(text), run the file console_controller.py.
