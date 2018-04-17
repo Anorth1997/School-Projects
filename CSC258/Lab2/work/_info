@@ -1,0 +1,116 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2
+vmux
+Z1 !s110 1516574736
+!i10b 1
+!s100 cdR_1YenO8Tj:kQjco8Hj0
+IR>@9X`C0?ZYPT;Gz=0e8a3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1516420949
+Z4 8mux.v
+Z5 Fmux.v
+L0 6
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1516574735.000000
+Z8 !s107 mux.v|
+Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|mux.v|
+!i113 1
+Z10 o-timescale 1ns/1ns
+Z11 tCvgOpt 0
+vmux2to1
+R1
+!i10b 1
+!s100 TTIHj49<CR0@RI;z:V^^52
+I;;U2B[KUn:OCMzk>Rck643
+R2
+R0
+R3
+R4
+R5
+L0 18
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vmux4to1
+!s110 1516509903
+!i10b 1
+!s100 U6]OJf8m`kOeibi=EJhbN3
+I<f2cVkjzkdnM<d@FiF7Wo1
+R2
+R0
+w1516509539
+8C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/Part2.v
+FC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/Part2.v
+L0 1
+R6
+r1
+!s85 0
+31
+!s108 1516509903.000000
+!s107 C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/Part2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/Part2.v|
+!i113 1
+Z12 o-work work
+R11
+vseven_seg_decoder
+!s110 1516586972
+!i10b 1
+!s100 eA`EP6ao39j:UWb3^7Rh72
+IMmC6mej53gWdX`77QeHbA2
+R2
+R0
+w1516586051
+8C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/part3 seven-segment.v
+FC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/part3 seven-segment.v
+L0 1
+R6
+r1
+!s85 0
+31
+!s108 1516586972.000000
+!s107 C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/part3 seven-segment.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/part3 seven-segment.v|
+!i113 1
+R12
+R11
+vSevenSegmentDecoder
+!s110 1516592389
+!i10b 1
+!s100 DQ0:Ke@c:MC_`i?f6A]Dz0
+I>L7ZXD5eF[P7PFQB_6JA]0
+R2
+R0
+w1516592372
+8C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/part3 seven-segment(2).v
+FC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/part3 seven-segment(2).v
+L0 1
+R6
+r1
+!s85 0
+31
+!s108 1516592389.000000
+!s107 C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/part3 seven-segment(2).v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab2/part3 seven-segment(2).v|
+!i113 1
+R12
+R11
+n@seven@segment@decoder

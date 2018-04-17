@@ -1,0 +1,14 @@
+module SevenSegmentDecoder(c3,c2,c1,c0,ss_out);
+	input c3,c2,c1,c0; //the bcd input
+	output reg [6:0] ss_out; //the seven segements
+	
+	assign ss_out[0] = ~c3 & ~c2 & ~c1 & c0 | ~c3 & c2 & ~c1 & ~c0 | c3 & ~c2 & c1 & c0 | c3 & c2 & ~c1 & c0;
+	assign ss_out[1] = c3 & c1 & c0 | c2 & c1 & ~c0 | ~c3 & c2 & ~c1 & c0 | c3 & c2 & ~c0;
+	assign ss_out[2] = ~c3 & ~c2 & c1 & ~c0 | c3 & c2 & ~c0 | c3 & c2 & c1;
+	assign ss_out[3] = ~c3 & ~c2 & ~c1 & c0 | ~c3 & c2 & ~c1 & ~c0 | c2 & c1 & c0 | c3 & ~c2 & c1 & ~c0;
+	assign ss_out[4] = ~c3 & c0 | ~c3 & c2 & ~c1 | ~c2 & ~c1 & c0;
+	assign ss_out[5] = ~c3 & ~c2 & c0 | ~c3 & ~c2 & c1 | ~c3 & c1 & c0 | c3 & c2 & ~c1 & c0;
+	assign ss_out[6] = ~c3 & ~c2 & ~c1 | ~c3 & c2 & c1 & c0 | c3 & c2 & ~c1 & ~c0;
+	
+endmodule
+	
