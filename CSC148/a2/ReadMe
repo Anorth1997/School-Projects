@@ -1,0 +1,4 @@
+This assignment is to compress and uncompress files which implements the theory of Huffman Tree coding with Python.
+
+The file huffman.py is the file, you can choose to compress or uncompress the file in console after executing huffman.py.
+
