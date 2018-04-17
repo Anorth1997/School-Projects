@@ -1,0 +1,376 @@
+module divider(SW, KEY, CLOCK_50, LEDR, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5);
+    input [9:0] SW;
+    input [3:0] KEY;
+    input CLOCK_50;
+    output [3:0] LEDR;
+    output [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
+
+    wire [3:0] quotient;
+	 wire [4:0] remainder;
+
+    part3 u0(
+        .clk(CLOCK_50),
+        .resetn(KEY[0]),
+        .start(KEY[1]),
+        .data_in(SW[7:0]),
+		  .data_result({remainder, quotient})
+    );
+      
+    assign LEDR[3:0] = quotient;
+
+    hex_decoder H0(
+        .hex_digit(SW[3:0]), 
+        .segments(HEX0)
+        );
+    
+	 hex_decoder H1(
+        .hex_digit(4'd0), 
+        .segments(HEX1)
+        );    
+ 
+ 	 hex_decoder H2(
+        .hex_digit(SW[7:4]), 
+        .segments(HEX2)
+        );    
+
+ 	 hex_decoder H3(
+        .hex_digit(4'd0), 
+        .segments(HEX3)
+        );    
+	
+ 	 hex_decoder H4(
+        .hex_digit(quotient), 
+        .segments(HEX4)
+        );
+		  
+ 	 hex_decoder H5(
+        .hex_digit(remainder[3:0]), 
+        .segments(HEX5)
+        );    
+   
+endmodule
+
+module part3(
+	input clk,
+	input resetn,
+	input start,
+	input [7:0]data_in,
+	output [8:0]data_result
+	);
+	
+	wire ld_m, ld_q, ld_a, ld_r, ld_alu_out, alu_select_a;
+   wire [1:0]alu_op;
+	control u0(
+				.clk(clk),
+				.resetn(resetn),
+				.go(~start),
+				.ld_m(ld_m),
+				.ld_q(ld_q),
+				.ld_a(ld_a),
+				.ld_r(ld_r),
+				.ld_alu_out(ld_alu_out),
+				.alu_select_a(alu_select_a),
+				.alu_op(alu_op)
+				);
+	
+	datapath u1(
+				.data_in(data_in),
+				.clk(clk),
+				.resetn(resetn),
+				.ld_m(ld_m),
+				.ld_q(ld_q),
+				.ld_a(ld_a),
+				.ld_r(ld_r),
+				.ld_alu_out(ld_alu_out),
+				.alu_select_a(alu_select_a),
+				.alu_op(alu_op),
+				.data_result(data_result)
+				);
+endmodule
+
+module control(
+	input clk,
+	input resetn,
+	input go,
+	
+	output reg ld_m, ld_q, ld_a, ld_r,
+	output reg ld_alu_out,
+	output reg alu_select_a,
+	output reg [1:0] alu_op
+	);
+	
+	reg [3:0] current_state, next_state;
+	
+	localparam  S_LOAD_INPUT = 4'd0,
+					S_CYCLE1_0   = 4'd1,    // 4 cycles needed, each cycle need 
+					S_CYCLE1_1   = 4'd2,    // 3 steps to accomplish
+					S_CYCLE1_2   = 4'd3,
+					S_CYCLE2_0   = 4'd4,
+					S_CYCLE2_1   = 4'd5,
+					S_CYCLE2_2   = 4'd6,
+					S_CYCLE3_0   = 4'd7,
+					S_CYCLE3_1   = 4'd8,
+					S_CYCLE3_2   = 4'd9,
+					S_CYCLE4_0   = 4'd10,
+					S_CYCLE4_1   = 4'd11,
+					S_CYCLE4_2   = 4'd12;
+	
+	// Next state logic
+	always @(*)
+	begin
+		case(current_state)
+			S_LOAD_INPUT: next_state = go ? S_CYCLE1_0 : S_LOAD_INPUT;
+//			S_LOAD_INPUT_WAIT: next_state = go ? S_LOAD_INPUT_WAIT : S_CYCLE1_0;
+			S_CYCLE1_0: next_state = S_CYCLE1_1;
+			S_CYCLE1_1: next_state = S_CYCLE1_2;
+			S_CYCLE1_2: next_state = S_CYCLE2_0;
+			S_CYCLE2_0: next_state = S_CYCLE2_1;
+			S_CYCLE2_1: next_state = S_CYCLE2_2;
+			S_CYCLE2_2: next_state = S_CYCLE3_0;
+			S_CYCLE3_0: next_state = S_CYCLE3_1;
+			S_CYCLE3_1: next_state = S_CYCLE3_2;
+			S_CYCLE3_2: next_state = S_CYCLE4_0;
+			S_CYCLE4_0: next_state = S_CYCLE4_1;
+			S_CYCLE4_1: next_state = S_CYCLE4_2;
+			S_CYCLE4_2: next_state = S_LOAD_INPUT;
+			default:         next_state = S_LOAD_INPUT;
+		endcase
+	end  // state table
+	
+	// Output logic for our datapath control signals
+	always @(*) 
+	begin 
+		ld_alu_out = 1'b0;
+      ld_m = 1'b0;
+      ld_q = 1'b0;
+      ld_a = 1'b0;
+      ld_r = 1'b0;
+      alu_select_a = 1'b0;
+      alu_op       = 2'b00;
+		
+		case (current_state) 
+			S_LOAD_INPUT: begin
+				ld_m = 1'b1;
+				ld_q = 1'b1;
+				end
+			S_CYCLE1_0: begin 
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				ld_q = 1'b1;
+				alu_select_a = 1'b1;
+				alu_op = 2'b00;
+				end
+			S_CYCLE1_1: begin
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				alu_select_a = 1'b0;
+				alu_op = 2'b01;
+				end
+			S_CYCLE1_2: begin
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				ld_q = 1'b1;
+				alu_select_a = 1'b0;
+				alu_op = 2'b10;
+				end
+				
+				
+			S_CYCLE2_0: begin 
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				ld_q = 1'b1;
+				alu_select_a = 1'b1;
+				alu_op = 2'b00;
+				end
+			S_CYCLE2_1: begin
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				alu_select_a = 1'b0;
+				alu_op = 2'b01;
+				end
+			S_CYCLE2_2: begin
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				ld_q = 1'b1;
+				alu_select_a = 1'b0;
+				alu_op = 2'b10;
+				end
+				
+				
+			S_CYCLE3_0: begin 
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				ld_q = 1'b1;
+				alu_select_a = 1'b1;
+				alu_op = 2'b00;
+				end
+			S_CYCLE3_1: begin
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				alu_select_a = 1'b0;
+				alu_op = 2'b01;
+				end
+			S_CYCLE3_2: begin
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				ld_q = 1'b1;
+				alu_select_a = 1'b0;
+				alu_op = 2'b10;
+				end
+			
+			
+			S_CYCLE4_0: begin 
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				ld_q = 1'b1;
+				alu_select_a = 1'b1;
+				alu_op = 2'b00;
+				end
+			S_CYCLE4_1: begin
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				alu_select_a = 1'b0;
+				alu_op = 2'b01;
+				end
+			S_CYCLE4_2: begin
+				ld_alu_out = 1'b1;
+				ld_a = 1'b1;
+				ld_q = 1'b1;
+				alu_select_a = 1'b0;
+				alu_op = 2'b10;
+				ld_r = 1'b1;
+				end
+		
+		endcase
+	end
+		
+	// current_state registers
+   always@(posedge clk)
+   begin: state_FFs
+       if(!resetn)
+           current_state <= S_LOAD_INPUT;
+       else
+           current_state <= next_state;
+   end // state_FFS
+	
+	
+	
+endmodule
+
+
+module datapath(
+	input clk,
+	input resetn,
+	input [7:0] data_in,
+	input ld_alu_out,
+	input ld_m, // for register divisor
+	input ld_q, // for register dividend
+	input ld_a, // for register A
+	input ld_r, // for register result
+	input alu_select_a, //select divisor register if 0, select dividend register if 1
+	input [1:0] alu_op,
+	output reg [8:0] data_result
+	);
+
+	// input registers
+   reg [3:0] dividend;
+	reg [4:0] Register_A;
+	reg [4:0] divisor;
+
+   // output of the alu
+   reg [8:0] alu_out;
+	
+	
+   // alu input muxes
+   reg [4:0] alu_a;
+	
+	// Registers dividend, Register_A, divisor with respective input logic
+	always @(posedge clk) begin 
+		if (!resetn) begin 
+			dividend <= 4'b0;
+			Register_A <= 5'b0;
+			divisor <= 5'b0;
+		end 
+		else begin 
+			if (ld_m) 
+				divisor <= {1'b0 ,data_in[3:0]};
+			if (ld_q)
+				dividend <= ld_alu_out ? alu_out[3:0] : data_in[7:4];
+			if (ld_a)
+				Register_A <= alu_out[8:4];
+		end
+	end
+	
+	
+	//output result register Result
+   always @ (posedge clk) 
+	begin
+		if (!resetn) 
+			data_result <= 8'd0; 
+		else 
+			if(ld_r)
+				data_result <= alu_out;
+   end
+	 
+	 
+	// The ALU input multiplexer
+	always @(*) begin
+		case(alu_select_a) 
+			1'b0: 
+				alu_a <= divisor; 
+			1'b1:
+				alu_a <= dividend;
+			default: alu_a = 5'd0;
+		endcase
+	end
+	
+	
+	// The ALU
+	always @(*)
+	begin 
+		case(alu_op)
+			2'b00: begin         // shift left
+							alu_out <= {Register_A, alu_a[3:0]} << 1'b1;
+					 end 
+			2'b01: begin 				 // subtract Divisor from Register A
+							alu_out[8:4] <= Register_A - alu_a;  
+					 end 
+			2'b10: begin    			// set q0 to 0 or 1
+						alu_out[0] <= ~Register_A[4]; 	
+					   if (Register_A[4]) begin
+							alu_out[8:4] <= Register_A + alu_a;
+						end 
+						else alu_out[8:4] <= Register_A;
+					 end 
+//			default: alu_out <= {Register_A, alu_a};
+		endcase
+	end
+	
+
+endmodule
+
+module hex_decoder(hex_digit, segments);
+    input [3:0] hex_digit;
+    output reg [6:0] segments;
+   
+    always @(*)
+        case (hex_digit)
+            4'h0: segments = 7'b100_0000;
+            4'h1: segments = 7'b111_1001;
+            4'h2: segments = 7'b010_0100;
+            4'h3: segments = 7'b011_0000;
+            4'h4: segments = 7'b001_1001;
+            4'h5: segments = 7'b001_0010;
+            4'h6: segments = 7'b000_0010;
+            4'h7: segments = 7'b111_1000;
+            4'h8: segments = 7'b000_0000;
+            4'h9: segments = 7'b001_1000;
+            4'hA: segments = 7'b000_1000;
+            4'hB: segments = 7'b000_0011;
+            4'hC: segments = 7'b100_0110;
+            4'hD: segments = 7'b010_0001;
+            4'hE: segments = 7'b000_0110;
+            4'hF: segments = 7'b000_1110;   
+            default: segments = 7'h7f;
+        endcase
+endmodule
