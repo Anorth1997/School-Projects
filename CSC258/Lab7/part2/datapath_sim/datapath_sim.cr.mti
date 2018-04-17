@@ -1,0 +1,11 @@
+C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab7/part2/lab7_part2/lab7_part2/part2.v {1 {vlog -work work -stats=none C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab7/part2/lab7_part2/lab7_part2/part2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module part2
+-- Compiling module datapath
+-- Compiling module control
+-- Compiling module combination
+
+Top level modules:
+	part2
+
+} {} {}}

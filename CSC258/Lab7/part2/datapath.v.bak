@@ -1,0 +1,225 @@
+// Part 2 skeleton
+
+module part2
+	(
+		CLOCK_50,						//	On Board 50 MHz
+		// Your inputs and outputs here
+        KEY,
+        SW,
+		// The ports below are for the VGA output.  Do not change.
+		VGA_CLK,   						//	VGA Clock
+		VGA_HS,							//	VGA H_SYNC
+		VGA_VS,							//	VGA V_SYNC
+		VGA_BLANK_N,						//	VGA BLANK
+		VGA_SYNC_N,						//	VGA SYNC
+		VGA_R,   						//	VGA Red[9:0]
+		VGA_G,	 						//	VGA Green[9:0]
+		VGA_B   						//	VGA Blue[9:0]
+	);
+
+	input			CLOCK_50;				//	50 MHz
+	input   [9:0]   SW;
+	input   [3:0]   KEY;
+
+	// Declare your inputs and outputs here
+	// Do not change the following outputs
+	output			VGA_CLK;   				//	VGA Clock
+	output			VGA_HS;					//	VGA H_SYNC
+	output			VGA_VS;					//	VGA V_SYNC
+	output			VGA_BLANK_N;				//	VGA BLANK
+	output			VGA_SYNC_N;				//	VGA SYNC
+	output	[9:0]	VGA_R;   				//	VGA Red[9:0]
+	output	[9:0]	VGA_G;	 				//	VGA Green[9:0]
+	output	[9:0]	VGA_B;   				//	VGA Blue[9:0]
+	
+	wire resetn;
+	assign resetn = KEY[0];
+	
+	// Create the colour, x, y and writeEn wires that are inputs to the controller.
+	wire [2:0] colour;
+	wire [7:0] x;
+	wire [6:0] y;
+	wire writeEn;
+	wire ld_x;
+	wire ld_y;
+	wire display;
+
+	// Create an Instance of a VGA controller - there can be only one!
+	// Define the number of colours as well as the initial background
+	// image file (.MIF) for the controller.
+	vga_adapter VGA(
+			.resetn(resetn),
+			.clock(CLOCK_50),
+			.colour(colour),
+			.x(x),
+			.y(y),
+			.plot(writeEn),
+			/* Signals for the DAC to drive the monitor. */
+			.VGA_R(VGA_R),
+			.VGA_G(VGA_G),
+			.VGA_B(VGA_B),
+			.VGA_HS(VGA_HS),
+			.VGA_VS(VGA_VS),
+			.VGA_BLANK(VGA_BLANK_N),
+			.VGA_SYNC(VGA_SYNC_N),
+			.VGA_CLK(VGA_CLK));
+		defparam VGA.RESOLUTION = "160x120";
+		defparam VGA.MONOCHROME = "FALSE";
+		defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
+		defparam VGA.BACKGROUND_IMAGE = "black.mif";
+			
+	combination u0(
+					   .position_in(SW[6:0]),
+						.colour_in(SW[9:7]),
+						.clock(CLOCK_50),
+						.resetn(resetn),
+						.start(~KEY[2]),
+						.load(~KEY[3]),
+						.draw(~KEY[1]),
+						.x_out(x),
+						.y_out(y),
+						.colour_out(colour),
+						.plot(writeEn)
+						);
+    
+endmodule
+
+module combination(position_in, colour_in, clock, resetn, start, load, draw, x_out, y_out, colour_out, plot);
+	input [6:0]position_in;
+	input [2:0]colour_in;
+	input clock, resetn, start, load, draw;
+	output [7:0]x_out;
+	output [6:0]y_out;
+	output [2:0]colour_out;
+	output plot;
+	wire ld_x, ld_y, display;
+	
+	datapath d0(
+					.position_in(position_in),
+					.colour_in(colour_in),
+					.clock(clock),
+					.resetn(resetn),
+					.ld_x(ld_x),
+					.ld_y(ld_y),
+					.display(display),
+					.x_out(x_out),
+					.y_out(y_out),
+					.colour_out(colour_out)
+					);
+
+	control c0(
+				  .clock(clock), 
+				  .resetn(resetn), 
+				  .start(start), 
+				  .load(load), 
+				  .draw(draw), 
+				  .ld_x(ld_x), 
+				  .ld_y(ld_y), 
+				  .display(display), 
+				  .plot(plot)
+				  );
+				  
+endmodule
+
+module datapath(position_in, colour_in, clock, resetn, ld_x, ld_y, display, x_out, y_out, colour_out);
+	input [6:0]position_in;
+	input [2:0]colour_in;
+	input clock, resetn, ld_x, ld_y, display;
+	output reg [7:0]x_out;
+	output reg [6:0]y_out;
+	output reg [2:0]colour_out;
+	reg [7:0]x;
+	reg [6:0]y;
+	reg [3:0]count;
+	
+	always@(posedge clock)
+		begin: load
+			if(!resetn)
+				begin 
+					x <= 8'b00000000;
+					y <= 7'b0000000;
+				end
+			
+			else
+				begin
+					if(ld_x) 
+						x <= {1'b0, position_in};
+					if(ld_y) 
+						y <= position_in;
+					if(display)
+						begin
+							x_out <= x + count[1:0];
+							y_out <= y + count[3:2];
+							colour_out <= colour_in;
+						end
+				end
+		end
+		
+	always@(posedge clock)
+		begin: counter
+			if(!resetn)
+				count <= 4'b0000;
+			else if(display)
+				begin
+					if(count == 4'b1111)
+						count <= 4'b0000;
+					else
+						count <= count + 1'b1;
+				end
+		end
+		
+endmodule
+
+module control(clock, resetn, start, load, draw, ld_x, ld_y, display, plot);
+	input resetn, clock,start, load, draw;
+	output reg ld_x, ld_y, display, plot;
+
+	reg [2:0]current_state, next_state;
+	
+	localparam  S_LOAD_X = 3'd0,
+					S_LOAD_X_WAIT= 3'd1,
+					S_LOAD_Y = 3'd2,
+					S_LOAD_Y_WAIT = 3'd3,
+					S_DISPLAY = 3'd4;
+	
+	always @(*)
+		begin: states
+			case (current_state)
+				S_LOAD_X: next_state = load ? S_LOAD_X_WAIT : S_LOAD_X;
+				S_LOAD_X_WAIT: next_state = load ? S_LOAD_X_WAIT : S_LOAD_Y;
+				S_LOAD_Y: next_state = draw ? S_LOAD_Y_WAIT : S_LOAD_Y;
+				S_LOAD_Y_WAIT: next_state = draw ? S_LOAD_Y_WAIT  : S_DISPLAY;
+				S_DISPLAY: next_state = start ? S_LOAD_X : S_DISPLAY;
+				default: next_state = S_LOAD_X;
+			endcase
+		end
+					
+	always @(*)
+		begin: signals
+			ld_x = 1'b0;
+			ld_y = 1'b0;
+			display = 1'b0;
+			plot = 1'b0;
+		
+			case (current_state)
+				S_LOAD_X: begin
+					ld_x = 1'b1;
+					end
+		      S_LOAD_Y: begin
+					ld_y = 1'b1;
+					end
+		      S_DISPLAY: begin
+					display = 1'b1;
+					plot = 1'b1;
+					end		
+			endcase
+		end
+	
+	always @(posedge clock)
+		begin 
+        if(!resetn)
+            current_state <= S_LOAD_X;
+        else
+            current_state <= next_state;
+		end 
+endmodule					

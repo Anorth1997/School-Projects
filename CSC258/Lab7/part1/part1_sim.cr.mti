@@ -1,0 +1,15 @@
+C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab7/part1/ram32x4_bb.v {1 {vlog -work work -stats=none C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab7/part1/ram32x4_bb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ram32x4
+
+Top level modules:
+	ram32x4
+
+} {} {}} C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab7/part1/ram32x4.v {1 {vlog -work work -stats=none C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab7/part1/ram32x4.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ram32x4
+
+Top level modules:
+	ram32x4
+
+} {} {}}

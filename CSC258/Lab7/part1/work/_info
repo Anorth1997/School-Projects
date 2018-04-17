@@ -1,0 +1,31 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab6/part1
+vram32x4
+!s110 1520895151
+!i10b 1
+!s100 ;^BLTO6lghzZ?IMklD^:U3
+IL4aXP2>Joz8@=o]5n]S2J3
+VDg1SIo80bB@j0V0VzS_@n1
+dC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab7/part1
+w1520821656
+8C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab7/part1/ram32x4.v
+FC:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab7/part1/ram32x4.v
+L0 40
+OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1520895151.000000
+!s107 C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab7/part1/ram32x4.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/chenz/Desktop/University/SecondYear2017/Winter/CSC258/Tutorial/Lab7/part1/ram32x4.v|
+!i113 1
+o-work work
+tCvgOpt 0
