@@ -1,9 +1,0 @@
-### Unix ###
-cd phase2/src
-javac imagetagger/ImageTagger.java
-java imagetagger.ImageTagger
-
-### Windows ###
-cd phase2\src
-javac imagetagger\ImageTagger.java
-java imagetagger.ImageTagger
